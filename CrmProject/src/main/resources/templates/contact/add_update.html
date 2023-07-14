@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+    <input name="id" type="hidden" th:value="${contact?.id}"/>
+    <input name="cusId" type="hidden" th:value="${cusId}"/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">地点</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="address" lay-verify="required" th:value="${contact?.address}" placeholder="请输入地点">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">概述</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="overview" lay-verify="required"
+                   th:value="${contact?.overview}" placeholder="请输入概述">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">记录时间</label>
+        <div class="layui-input-block">
+            <input text="text" class="layui-input"
+                   name="contactTime" id="contactTime" th:value="${#dates.format(contact?.contactTime, 'yyyy-MM-dd')}">
+        </div>
+    </div>
+    <br/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-lg" lay-submit=""
+                    lay-filter="addOrUpdate">确认
+            </button>
+            <button class="layui-btn layui-btn-lg layui-btn-normal">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/js/contact/add.update.js}"></script>
+</body>
+</html>
+<!--
+<script>
+    layui.use(['laydate'], function (){
+        var laydate=layui.laydate;
+        laydate.render({
+            elem: '#contactTime'
+            ,trigger: 'click'
+            ,format: 'yyyy-MM-dd HH:mm:ss'
+            ,type: 'datetime'
+        });
+    })
+</script>-->

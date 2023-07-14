@@ -1,0 +1,60 @@
+## 端口号  上下文路径
+server:
+  port: 9898
+  servlet:
+    context-path: /crm
+
+## 数据源配置
+spring:
+  datasource:
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/crm?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false        #开启模板缓存（默认值:true )
+    check-template: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+    excluded-view-names:
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+
+  #  ## freemarker
+#  freemarker:
+#    suffix: .ftl
+#    content-type: text/html
+#    charset: UTF-8
+#    template-loader-path: classpath:/views/
+
+  ## 启用热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml                    #配置mapper文件位置
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl     #日志
+### mybatis 配置
+#mybatis:
+#  mapper-locations: classpath:/mappers/*.xml
+#  type-aliases-package: com.softeem.crm.vo;com.softeem.crm.query;com.softeem.crm.dto
+#  configuration:
+#    map-underscore-to-camel-case: true #开启驼峰
+
+## pageHelper
+#pagehelper:
+#  helper-dialect: mysql
+
+## 设置 dao 日志打印级别
+#logging:
+#  level:
+#    com:
+#      softeem:
+#        crm:
+#          dao: debug

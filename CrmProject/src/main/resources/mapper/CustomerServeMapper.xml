@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.softeem.crm.mapper.CustomerServeMapper">
+
+    <resultMap id="BaseResultMap" type="com.softeem.crm.pojo.CustomerServe">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="serveType" column="serve_type" jdbcType="VARCHAR"/>
+        <result property="overview" column="overview" jdbcType="VARCHAR"/>
+        <result property="customer" column="customer" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="VARCHAR"/>
+        <result property="serviceRequest" column="service_request" jdbcType="VARCHAR"/>
+        <result property="createPeople" column="create_people" jdbcType="VARCHAR"/>
+        <result property="assigner" column="assigner" jdbcType="VARCHAR"/>
+        <result property="assignTime" column="assign_time" jdbcType="TIMESTAMP"/>
+        <result property="serviceProce" column="service_proce" jdbcType="VARCHAR"/>
+        <result property="serviceProcePeople" column="service_proce_people" jdbcType="VARCHAR"/>
+        <result property="serviceProceTime" column="service_proce_time" jdbcType="TIMESTAMP"/>
+        <result property="serviceProceResult" column="service_proce_result" jdbcType="VARCHAR"/>
+        <result property="myd" column="myd" jdbcType="VARCHAR"/>
+        <result property="isValid" column="is_valid" jdbcType="INTEGER"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,serve_type,overview,
+        customer,state,service_request,
+        create_people,assigner,assign_time,
+        service_proce,service_proce_people,service_proce_time,
+        service_proce_result,myd,is_valid,
+        update_date,create_date
+    </sql>
+
+    <select id="selectByParams" parameterType="com.softeem.crm.vo.CustomerServeQuery"
+            resultType="com.softeem.crm.vo.CustomerServeVo">
+        select c.*,d.data_dic_value as dic_value
+        from t_customer_serve c left join t_datadic d on c.serve_type = d.id
+        <where>
+            c.is_valid=0
+            <if test="null !=customerServeQuery.customer and customerServeQuery.customer!=''">
+                and customer like concat('%',#{customerServeQuery.customer},'%')
+            </if>
+            <if test="null !=customerServeQuery.state and customerServeQuery.state!=''">
+                and state =#{customerServeQuery.state}
+            </if>
+            <if test="null !=customerServeQuery.type and customerServeQuery.type!=''">
+                and serve_type = #{customerServeQuery.type}
+            </if>
+            <if test="null !=customerServeQuery.assigner">
+                and assigner = #{customerServeQuery.assigner}
+            </if>
+        </where>
+    </select>
+</mapper>

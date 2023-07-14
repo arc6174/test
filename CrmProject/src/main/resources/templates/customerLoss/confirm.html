@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+    <input name="id" type="hidden" th:value="${customerLoss?.id}"/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">流失原因</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="lossReason" lay-verify="required"
+                   th:value="${customerLoss?.lossReason}" placeholder="流失原因">
+        </div>
+    </div>
+    <br/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-lg" lay-submit=""
+                    lay-filter="addOrUpdate">确认
+            </button>
+            <button class="layui-btn layui-btn-lg layui-btn-normal">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/js/customerLoss/confirm.js}"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+    <input name="id" type="hidden" th:value="${linkman?.id}"/>
+    <input name="cusId" type="hidden" th:value="${cusId}"/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">联系人名</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="linkName" lay-verify="required"
+                   th:value="${linkman?.linkName}" placeholder="联系人名">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="sex" lay-verify="required" th:value="${linkman?.sex}" placeholder="请输入性别">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">职位</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="zhiwei" lay-verify="required"
+                   th:value="${linkman?.zhiwei}" placeholder="请输入职位">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">办公电话</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="officePhone" lay-verify="required" th:value="${linkman?.officePhone}" placeholder="请输入办公电话">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"
+                   name="phone" lay-verify="required" th:value="${linkman?.phone}" placeholder="请输入电话">
+        </div>
+    </div>
+    <br/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-lg" lay-submit=""
+                    lay-filter="addOrUpdate">确认
+            </button>
+            <button class="layui-btn layui-btn-lg layui-btn-normal">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/js/linkman/add.update.js}"></script>
+</body>
+</html>
